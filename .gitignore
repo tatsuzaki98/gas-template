@@ -1,4 +1,5 @@
 /package-lock.json
 /src/style.html
 /dist
+/target
 /node_modules

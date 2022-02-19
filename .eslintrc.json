@@ -15,5 +15,5 @@
     ],
     "rules": {
     },
-    "ignorePatterns": "**/*.config.js"
+    "ignorePatterns": "**/*.js"
 }
