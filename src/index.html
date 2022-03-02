@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <base target="_top">
-    <?!= HtmlService.createHtmlOutputFromFile("style").getContent(); ?>
+    <!-- BEGIN DEV -->
+      <title>af-depot:dev</title>
+      <link href="/index.css" rel="stylesheet"/>
+    <!-- END DEV -->
+
+    <!-- BEGIN DIST -->
+      <base target="_top">
+    <!-- END DIST -->
   </head>
-  <body>
-    <h1 class="font-bold">Hello HTML!</h1>
-    <p><?=props.point?></p>
+
+  <body class="p-8">
+    <section>
+      <h1 class="text-4xl font-bold">叡風会共有ファイル</h1>
+
+    </section>
+
+    <section>
+      <h3 class="text-2xl font-bold">リンク集</h3>
+      <hr/>
+
+      <ul class="list-disc list-inside">
+        <li class="m-2">
+          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
+          <span>- 2016年以前の写真アルバム。</span>
+        </li>
+        <li class="m-2">
+          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
+          <span>- 2016年以前の写真アルバム。</span>
+        </li>
+        <li class="m-2">
+          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
+          <span>- 2016年以前の写真アルバム。</span>
+        </li>
+        <li class="m-2">
+          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
+          <span>- 2016年以前の写真アルバム。</span>
+        </li>
+        <li class="m-2">
+          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
+          <span>- 2016年以前の写真アルバム。</span>
+        </li>
+      </ul>
+
+      <!-- BEGIN DIST -->
+        <?=props.point?>
+      <!-- END DIST -->
+    </section>
+
+    <section>
+      <h3 class="font-bold text-2xl">音源簡易検索</h3>
+      <hr/>
+
+      <div class="flex-row p-2">
+        <input
+          type="text"
+          class="border border-gray-300 rounded-md w-full flex flex-1 p-2"
+          placeholder="夕顔, 茶音頭, etc."
+        />
+        <button class="flex bg-blue-500 text-white font-bold px-4 py-2 mx-2 rounded-md">検索</button>
+      </div>
+    </section>
+
   </body>
 </html>

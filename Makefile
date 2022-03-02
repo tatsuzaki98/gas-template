@@ -1,50 +1,69 @@
 ##########################################################################
 # Initialize
 #
-${shell mkdir -p target dist}
+${shell mkdir -p target/dev target/dist}
 
 
 ##########################################################################
 # Aliases
 #
-.PHONY: build
-build: \
-target/main.js \
-target/appscript.json \
-target/index.html \
-target/style.html
+.PHONY: all
+all: dist dev
 
-.PHONY: css
-css: target/style.html
+.PHONY: dist
+dist: \
+  target/dist/main.js \
+  target/dist/appsscript.json \
+  target/dist/index.html \
+  target/dist/style.html
+
+.PHONY: dev
+dev: target/dev/index.css target/dev/index.html
+
+.PHONY: serve
+serve: dev
+	cd target/dev && php -S localhost:8888
 
 .PHONY: clear
 clear:
-	rm -r target dist
+	rm -r target
 
 
 ##########################################################################
 # Dependencies
 #
-assets/postcss.config.js: assets/tailwind.config.js
-target/main.js: src/main.ts tsconfig.json
-dist/index.css: src/index.html 
+target/dist/main.js: src/main.ts tsconfig.json
+target/dist/appsscript.json: src/appsscript.json
+target/dist/index.html: src/index.html assets/parse_html.py
+target/dist/style.html: target/dev/index.css
+
+target/dev/index.html: src/index.html assets/parse_html.py
+target/dev/index.css: \
+  src/index.html\
+  assets/postcss.config.js\
+  assets/tailwind.pcss\
+  assets/tailwind.config.js
 
 ##########################################################################
 # Recipes
 #
-target/main.js:
+target/dist/main.js:
 	npx tsc
 
-target/appscript.json: src/appsscript.json
-	install $< $@
+target/dist/appsscript.json:
+	install src/appsscript.json $@
 
-target/index.html: src/index.html
-	install $< $@
+target/dist/index.html:
+	./assets/parse_html.py -i src/index.html -t dist > $@
 
-target/style.html: dist/index.css
+target/dist/style.html:
 	printf "<style>\n" > $@
-	cat $< >> $@
+	cat target/dev/index.css >> $@
 	printf "\n</style>\n" >> $@
 
-dist/index.css: assets/postcss.config.js assets/tailwind.pcss
-	npx postcss --config ${word 1, $^} ${word 2, $^} -o $@
+target/dev/index.css:
+	touch $@
+	npx postcss --config assets/postcss.config.js assets/tailwind.pcss -o $@
+
+target/dev/index.html:
+	./assets/parse_html.py -i src/index.html -t dev > $@

@@ -12,6 +12,24 @@ const __getResponseProps = (): ResponseProps => {
   };
 };
 
+interface Person {
+  age: number;
+  name: string;
+}
+
+const persons: {[key: string]: Person} = {
+  '8c2d': {age: 12, name: 'hongo'},
+};
+
+const getPersonById = (id: string): Person => {
+  return persons[id];
+};
+
+/*
+function adder (a, b) {
+  return a + b;
+}
+*/
 
 const doGet = (
     e: GoogleAppsScript.Events.AppsScriptHttpRequestEvent,
@@ -29,4 +47,5 @@ const doGet = (
 // eslint-disable-next-line no-unused-vars
 const __GAS_PROCEDURES = {
   doGet,
+  getPersonById,
 };
