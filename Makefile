@@ -18,7 +18,10 @@ dist: \
   target/dist/style.html
 
 .PHONY: dev
-dev: target/dev/index.css target/dev/index.html
+dev: \
+target/dev/index.css \
+target/dev/index.html \
+target/dev/script.js
 
 .PHONY: serve
 serve: dev
@@ -33,10 +36,12 @@ clear:
 # Dependencies
 #
 target/dist/main.js: src/main.ts tsconfig.json
+target/dist/script.js: src/script.ts tsconfig.json
 target/dist/appsscript.json: src/appsscript.json
 target/dist/index.html: src/index.html assets/parse_html.py
 target/dist/style.html: target/dev/index.css
 
+target/dev/script.js: target/dist/script.js
 target/dev/index.html: src/index.html assets/parse_html.py
 target/dev/index.css: \
   src/index.html\
@@ -48,6 +53,9 @@ target/dev/index.css: \
 # Recipes
 #
 target/dist/main.js:
+	npx tsc
+
+target/dist/script.js:
 	npx tsc
 
 target/dist/appsscript.json:
@@ -67,3 +75,6 @@ target/dev/index.css:
 
 target/dev/index.html:
 	./assets/parse_html.py -i src/index.html -t dev > $@
+
+target/dev/script.js:
+	install ./target/dist/script.js $@

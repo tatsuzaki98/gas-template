@@ -4,6 +4,7 @@
     <!-- BEGIN DEV -->
       <title>af-depot:dev</title>
       <link href="/index.css" rel="stylesheet"/>
+      <script src="/script.js"></script>
     <!-- END DEV -->
 
     <!-- BEGIN DIST -->
@@ -11,57 +12,95 @@
     <!-- END DIST -->
   </head>
 
-  <body class="p-8">
-    <section>
-      <h1 class="text-4xl font-bold">叡風会共有ファイル</h1>
-
+  <body>
+    <section class="bg-blue-500 p-4 text-white">
+      <h1 class="text-2xl font-bold">叡風会共有ファイル</h1>
     </section>
 
-    <section>
-      <h3 class="text-2xl font-bold">リンク集</h3>
-      <hr/>
+    <article class="px-4 text-gray-700">
+      <section id="auth-form">
+        <div class="pt-6 pb-2">
+          <h3 class="text-3xl">会員確認</h3>
+        </div>
 
-      <ul class="list-disc list-inside">
-        <li class="m-2">
-          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
-          <span>- 2016年以前の写真アルバム。</span>
-        </li>
-        <li class="m-2">
-          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
-          <span>- 2016年以前の写真アルバム。</span>
-        </li>
-        <li class="m-2">
-          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
-          <span>- 2016年以前の写真アルバム。</span>
-        </li>
-        <li class="m-2">
-          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
-          <span>- 2016年以前の写真アルバム。</span>
-        </li>
-        <li class="m-2">
-          <a class="text-blue-500 cursor-pointer">旧フォトアルバム</a>
-          <span>- 2016年以前の写真アルバム。</span>
-        </li>
-      </ul>
+        <div class="py-2">
+          <p>BOX入り口の鍵４桁の数字</p>
+        </div>
 
-      <!-- BEGIN DIST -->
-        <?=props.point?>
-      <!-- END DIST -->
-    </section>
+        <form
+          class="flex flex-row p-2"
+          action=""
+          id="form-password"
+        >
+          <input
+            type='password'
+            class="border border-gray-300 rounded-md w-full flex flex-1 p-2"
+            autocomplete="on"
+            placeholder='e.g. 1234'
+            id="input-password"
+          />
+          <input
+            class="flex bg-blue-500 text-white  px-4 py-2 mx-2 rounded-md cursor-pointer"
+            type="submit"
+            value="確定"
+          />
+        </form>
+      </section>
 
-    <section>
-      <h3 class="font-bold text-2xl">音源簡易検索</h3>
-      <hr/>
+      <section>
+        <div class="pt-6 pb-2">
+          <h3 class="text-3xl">リンク</h3>
+        </div>
 
-      <div class="flex-row p-2">
-        <input
-          type="text"
-          class="border border-gray-300 rounded-md w-full flex flex-1 p-2"
-          placeholder="夕顔, 茶音頭, etc."
-        />
-        <button class="flex bg-blue-500 text-white font-bold px-4 py-2 mx-2 rounded-md">検索</button>
-      </div>
-    </section>
+        <div class="py-2">
+          <div class="shadow p-2">
+            <p><a class="text-blue-500 cursor-pointer" target="blank" href="https://example.com">
+              <span class="text-lg">
+                旧フォトアルバム
+              </span>
+              <span>
+                - https://example.com?q=%8c%2d%be%90%e8...
+              </span>
+            </a></p>
+            <p>2016年以前の写真アルバム</p>
+          </div>
+        </div>
+ 
+        <div class="py-2"><div class="shadow p-2"><p><a class="text-blue-500 cursor-pointer" target="blank" href="https://example.com"><span class="text-lg">旧フォトアルバム</span><span>- https://example.com?q=%8c%2d%be%90%e8...</span></a></p><p>2016年以前の写真アルバム</p></div></div>
+        <div class="py-2"><div class="shadow p-2"><p><a class="text-blue-500 cursor-pointer" target="blank" href="https://example.com"><span class="text-lg">旧フォトアルバム</span><span>- https://example.com?q=%8c%2d%be%90%e8...</span></a></p><p>2016年以前の写真アルバム</p></div></div>
+        <div class="py-2"><div class="shadow p-2"><p><a class="text-blue-500 cursor-pointer" target="blank" href="https://example.com"><span class="text-lg">旧フォトアルバム</span><span>- https://example.com?q=%8c%2d%be%90%e8...</span></a></p><p>2016年以前の写真アルバム</p></div></div>
+       
+      </section>
+
+      <section>
+        <div class="pt-6 pb-2">
+          <h3 class="text-3xl">音源簡易検索</h3>
+        </div>
+
+        <div class="py-2">
+          <p>プロ音源(A音源)の曲名検索</p>
+        </div>
+
+        <div class="flex-row p-2">
+          <input
+            type="text"
+            class="border border-gray-300 rounded-md w-full flex flex-1 p-2"
+            placeholder="夕顔, 茶音頭, etc."
+          />
+          <button class="flex bg-blue-500 text-white  px-4 py-2 mx-2 rounded-md">
+            検索
+          </button>
+        </div>
+
+        <div class="py-2">
+          <p>読み込み中...</p>
+          <ul class="list-disc list-inside">
+            <li>尾上の松, A102-20</li>
+          </ul>
+        </div>
+      </section>
+    </article>
 
   </body>
 </html>
+

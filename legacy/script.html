@@ -1,0 +1,47 @@
+<script>
+window.onload = () => {
+  const authFormElement = document.getElementById('auth-form');
+  const authButtonElement = document.getElementById('auth-button');
+  const authInputElement = document.getElementById('auth-input');
+  const searchFormElement = document.getElementById('search-form');
+  const searchButtonElement = document.getElementById('search-button');
+  const searchInputElement = document.getElementById('search-input');
+  const searchResultElement = document.getElementById('search-result');
+  const containerBodyElement = document.getElementById('container-body');
+  let authToken = '';
+  let searchQuery = '';
+  
+  
+  authInputElement.onchange = e => {
+    const shaObj = new jsSHA('SHA-256', 'TEXT')
+    shaObj.update('48ee7651b9e99a511216b827')
+    shaObj.update(e.target.value);
+    authToken = shaObj.getHash('HEX');
+  };
+
+
+  authButtonElement.onclick = () => {
+    google.script.run.withSuccessHandler(response => {
+      containerBodyElement.innerHTML = response['data'];
+      if (response['status'] == 200) {
+        authFormElement.style.cssText = 'display: none;';
+        searchFormElement.style.cssText += 'display: block;';
+      }
+    }).authorization(authToken);
+  };
+  
+  
+  searchInputElement.onchange = e => {
+    searchQuery = e.target.value;
+  };
+  
+  
+  searchButtonElement.onclick = () => {
+    google.script.run.withSuccessHandler(response => {
+      console.log(response);
+      searchResultElement.innerHTML = response;
+    }).searchFile(searchQuery);
+  };
+
+};
+</script>

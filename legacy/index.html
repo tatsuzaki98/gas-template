@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+    <?!= HtmlService.createHtmlOutputFromFile('sha256').getContent(); ?>
+    <?!= HtmlService.createHtmlOutputFromFile('script').getContent(); ?>
+  </head>
+
+  <body>
+    <div id='container-header'>
+      <h1>叡風会共有ファイル</h1>
+      <p id='alert'>
+        スマホで閲覧する場合、OneDriveのアプリをアンインストールする必要があります。
+        OneDriveアプリが入っていると、リンク先ではなくアプリを開いてしまいます。
+      </p>
+    </div>
+    
+    <div id="search-form" style="display: none;">
+      <h3>ファイル簡易検索</h3>
+      <p>(プロ音源のみ)</p>
+      <input type='text' id='search-input' placeholder='e.g. 六段の調, 千鳥の曲, ...' />
+      <a id='search-button'>search</a>
+      <div id="search-result">
+        <!-- ここの要素に検索結果を表示する -->
+      </div>
+    </div>
+    
+    <div id="container-body">
+      <!-- ここの要素にリンク集を表示させる -->
+    </div>
+    
+    <div id="auth-form">
+      <h3>会員確認 BOX入り口の鍵４桁の数字</h3>
+      <input type='password' placeholder='e.g. 1234' id='auth-input'/>
+      <a id='auth-button'>確定</a>
+    </div>
+  </body>
+</html>
